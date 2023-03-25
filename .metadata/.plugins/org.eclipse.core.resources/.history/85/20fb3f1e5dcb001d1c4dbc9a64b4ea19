@@ -1,0 +1,59 @@
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
+
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+//A demo test unit
+class TestDemoTest {
+
+	//Setup to initialize a testdemo each time it is run
+	@BeforeEach
+	void setUp() throws Exception {
+        TestDemo test = new TestDemo();
+	}
+    
+	//This method tests to assert that the two numbers are added correctly
+	@ParameterizedTest
+	@MethodSource("TestDemoTest#argumentsForAddPositive")
+	public void assertThatTwoPositiveNumbersAreAddedCorrectly(int a, int b, int expected, Boolean expectException) {
+		if(!expectException) {
+			assertThat(TestDemo.addPositive(a,b)).isEqualTo(expected);
+		}
+		else {
+			assertThatThrownBy(() -> TestDemo.addPositive(a,b)).isInstanceOf(IllegalArgumentException.class);
+		}
+	}
+
+	//This method tests to assert that the number is squared correctly
+	@org.junit.jupiter.api.Test
+	private void assertThatNumberSquaredIsCorrect() {
+		TestDemo mockDemo = new TestDemo();
+		mockDemo = spy(mockDemo);
+		doReturn(5).when(mockDemo).getRandomInt();
+		int fiveSquared = mockDemo.randomNumberSquared();
+		assertThat(fiveSquared).isEqualTo(25);
+	}
+
+	//This method tests that all the arguments are positive and added correctly, returning a stream of arguments
+	public static Stream<Arguments> argumentsForAddPositive() {
+		// @formatter:off
+		return Stream.of(
+			Arguments.arguments(2,4,5,false),
+			Arguments.arguments(0,0,0,false),
+			Arguments.arguments(-3,1,-2,false),
+			Arguments.arguments(-4,0,-4,false),
+			Arguments.arguments(5,2,7,true),
+			Arguments.arguments(0,3,3,true),
+			Arguments.arguments(12,-8,4,true)
+				);
+		// @formatter:on
+	}
+
+}

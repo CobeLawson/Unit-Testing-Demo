@@ -1,0 +1,23 @@
+INDEX VERSION 1.131+C:\Users\Cobe\Desktop\BootCamp\MySQL\Unit Test\.metadata\.plugins\org.eclipse.jdt.core
+3681630994.index
+121141543.index
+95223903.index
+286468650.index
+3942033500.index
+2029342285.index
+2342951790.index
+1748554168.index
+1892865925.index
+2492664124.index
+4275669669.index
+4204996803.index
+3772437827.index
+677750320.index
+3449291817.index
+313303152.index
+4267565485.index
+1671502013.index
+1865797976.index
+501221528.index
+1259153491.index
+4001363815.index
